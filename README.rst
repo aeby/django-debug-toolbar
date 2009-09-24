@@ -120,11 +120,10 @@ Usage
 
 Preferences of the debug toolbar:
 
-- **Intercept Redirects**: If checked, the debug toolbar will
-     show an intermediate page upon redirect so you can view any debug
-     information prior to redirecting.  This page will provide a link to the
-     redirect destination you can follow when ready.  If unchecked, redirects
-     will proceed as normal.
+- **Intercept Redirects**: If checked, the debug toolbar will show an intermediate page upon redirect so you can view any debug
+  information prior to redirecting.  This page will provide a link to the
+  redirect destination you can follow when ready.  If unchecked, redirects
+  will proceed as normal.
 
 TODOs and BUGS
 ==============
