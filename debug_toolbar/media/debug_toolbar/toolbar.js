@@ -1,6 +1,7 @@
 jQuery.noConflict();
 jQuery(function($j) {
-	var COOKIE_NAME = 'dj_debug_panel';
+	var PANEL_COOKIE_NAME = 'dj_debug_panel';
+	var REDIRECT_COOKIE_NAME = 'dj_debug_no_redirect';
 	$j.djDebug = function(data, klass) {
 		$j.djDebug.init();
 	}
@@ -56,11 +57,17 @@ jQuery(function($j) {
 				$j.djDebug.show_toolbar();
 				return false;
 			});
-			if ($j.cookie(COOKIE_NAME)) {
+			$j('#djInterceptRedirectCheckBox').click(function() {
+				$j.djDebug.intercept_redirect($j('#djInterceptRedirectCheckBox:checked').val());
+				return true;
+			});
+			if ($j.cookie(PANEL_COOKIE_NAME)) {
 				$j.djDebug.hide_toolbar(false);
 			} else {
 				$j.djDebug.show_toolbar(false);
 			}
+			
+			$j('#djInterceptRedirectCheckBox').attr('checked', !$j.cookie(REDIRECT_COOKIE_NAME));
 		},
 		open: function() {
 			// TODO: Decide if we should remove this
@@ -88,7 +95,7 @@ jQuery(function($j) {
 			// Unbind keydown
 			$j(document).unbind('keydown.djDebug');
 			if (setCookie) {
-				$j.cookie(COOKIE_NAME, 'hide', {
+				$j.cookie(PANEL_COOKIE_NAME, 'hide', {
 					path: '/',
 					expires: 10
 				});
@@ -107,7 +114,7 @@ jQuery(function($j) {
 			} else {
 				$j('#djDebugToolbar').show();
 			}
-			$j.cookie(COOKIE_NAME, null, {
+			$j.cookie(PANEL_COOKIE_NAME, null, {
 				path: '/',
 				expires: -1
 			});
@@ -116,6 +123,19 @@ jQuery(function($j) {
 			var uarr = String.fromCharCode(0x25b6);
 			var darr = String.fromCharCode(0x25bc);
 			elem.html(elem.html() == uarr ? darr : uarr);
+		},
+		intercept_redirect: function(intercept) {
+			if (intercept) {
+				$j.cookie(REDIRECT_COOKIE_NAME, null, {
+					path: '/',
+					expires: -1
+				});
+			} else {
+				$j.cookie(REDIRECT_COOKIE_NAME, 'no-redirect', {
+					path: '/',
+					expires: 10
+				});
+			}
 		}
 	});
 	$j(document).bind('close.djDebug', function() {

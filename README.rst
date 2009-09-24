@@ -85,12 +85,6 @@ The debug toolbar has two settings that can be set in `settings.py`:
 #. Optional: There are a few configuration options to the debug toolbar that
    can be placed in a dictionary:
 
-   * `INTERCEPT_REDIRECTS`: If set to True (default), the debug toolbar will
-     show an intermediate page upon redirect so you can view any debug
-     information prior to redirecting.  This page will provide a link to the
-     redirect destination you can follow when ready.  If set to False, redirects
-     will proceed as normal.
-
    * `SHOW_TOOLBAR_CALLBACK`: If not set or set to None, the debug_toolbar
      middleware will use its built-in show_toolbar method for determining whether
      the toolbar should show or not.  The default checks are that DEBUG must be
@@ -120,6 +114,17 @@ The debug toolbar has two settings that can be set in `settings.py`:
 	    'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
 	    'HIDE_DJANGO_SQL': False,
 	}
+
+Usage
+=====
+
+Preferences of the debug toolbar:
+
+- **Intercept Redirects**: If checked, the debug toolbar will
+     show an intermediate page upon redirect so you can view any debug
+     information prior to redirecting.  This page will provide a link to the
+     redirect destination you can follow when ready.  If unchecked, redirects
+     will proceed as normal.
 
 TODOs and BUGS
 ==============

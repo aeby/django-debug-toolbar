@@ -8,9 +8,7 @@ class DebugToolbar(object):
     def __init__(self, request):
         self.request = request
         self.panels = []
-        self.config = {
-            'INTERCEPT_REDIRECTS': True,
-        }
+        self.config = {}
         # Override this tuple by copying to settings.py as `DEBUG_TOOLBAR_PANELS`
         self.default_panels = (
             'debug_toolbar.panels.version.VersionDebugPanel',

@@ -92,6 +92,16 @@
 	font-variant:small-caps;
 }
 
+#djDebug #djDebugToolbar li>div.preferences  {
+	padding:10px 10px 5px 25px;
+}
+
+#djDebug #djDebugToolbar li>div.preferences label {
+	font-style:normal;
+	font-weight:normal;
+	color:#FFFFFF;
+}
+
 #djDebug #djDebugToolbarHandle {
 	position:fixed;
 	background:#fff;

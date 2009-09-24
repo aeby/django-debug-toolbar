@@ -78,7 +78,7 @@ class DebugToolbarMiddleware(object):
     def process_response(self, request, response):
         if not self.debug_toolbar:
             return response
-        if self.debug_toolbar.config['INTERCEPT_REDIRECTS']:
+        if not request.COOKIES.has_key('dj_debug_no_redirect'):
             if isinstance(response, HttpResponseRedirect):
                 redirect_to = response.get('Location', None)
                 if redirect_to:
